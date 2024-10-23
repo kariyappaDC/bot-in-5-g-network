@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            
+            .container{
+                height: 79vh;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+            .col-lg-5{
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 20px;
+            }
+            .contact-inputs{
+                width: 400px;
+                height: 50px;
+                border: none;
+                outline: none;
+                padding-left: 25px;
+                font-weight: 500;
+                border-radius: 50px;
+                color: #666;
+            }
+            .text-area{
+                height:140px ;
+                padding: 15px;
+                border-radius:20px ;
+            }
+            .contact-inputs:focus{
+                border: 2px solid #ff994f;
+            }
+            .contact-inputs::placeholder{
+                color: #a9a9a9;
+            }
+            #header
+            {
+                background-color: #000000;
+                min-height:80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="class-container">
+            <div id="header">
+            <div class="col-lg-2">
+                <img src="../static/images/logo.jpeg" class="col-lg-12" style="height:80px;" />
+            </div>
+            <div class="col-lg-4">
+                
+            </div>
+            <div class="col-lg-6" style="font-size:20px;font-weight:bolder;color:rgb(255, 255, 255);margin-top:25px;padding-left:250px;">
+                <a href="index">Home</a> | 
+                <a href="register">Register</a> | 
+                <a href="login">Login</a> | 
+                <a href="contact">Contact</a> 
+            </div>
+        </div>
+
+        <div id="body" style="height:680px;background-color: #beb5b5b8;">
+
+            <div class="container">
+  <div>
+    <div class="col-lg-7">
+      <img src="../static/images/contact.jpeg.jpg" style="height:500px;width: 100%;margin-top: 20% ; margin-left: 2%;">
+    </div>
+    <div class="col-lg-5" style="margin-left: 0%;"><br><br><br>
+      <h1 class="text-center" style="margin-top: 1%;margin-left: 50%;">Contact Us</h1>
+      <form style="margin-top: 10%;">
+      <label for="name"></label><br>
+        <input type="text" id="nm" name="nm" placeholder="Your name" class="contact-inputs" required><br>
+        <label for="phone"></label><br>
+        <input type="text" id="ph" name="ph" placeholder="Your phone" class="contact-inputs" required><br>
+        <label for="email"></label><br>
+        <input type="text" id="em" name="em" placeholder="Your mail" class="contact-inputs" required><br>
+        <label for="country"></label><br>
+        <select id="country" name="country" class="contact-inputs" required >
+          <option>select country</option>
+          <option>India</option>
+          <option>Australia</option>
+          <option>Canada</option>
+          <option>USA</option>
+        </select><br>
+        <label for="message"></label><br>
+        <div class="text-area">     
+               <textarea id="message" name="message" placeholder="Your message " class="contact-inputs" required ="height:100px;width: 50%;"></textarea><br><br>
+        </div>
+            <input type="submit" class="btn btn-primary col-lg-3" id="btn_contact" name="btn_contact" value="submit" style="margin-right:30px; margin-top: -30px; display: flex;"/>
+            </form>
+    </div>
+  </div>
+</div>
+        </div>
+
+<div id="footer" style="background-color:#050505;height:50px;text-align: center;color: rgb(251, 251, 251);font-weight:bolder;font-size:15px;padding-top:1%;" >
+    All Rights Reserved to 5G Network
+</div>
+
+    </body>
+
+        
+    <script src="../static/js/api.js"></script>
+</html>

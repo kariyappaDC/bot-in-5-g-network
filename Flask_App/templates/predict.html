@@ -1,0 +1,122 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <style>
+            #header
+            {
+                background-color: #000000;
+                min-height:100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <div class="col-lg-2">
+                <img src="../static/images/logo.jpeg" class="col-lg-12" style="height:100px;" />
+            </div>
+            <div class="col-lg-4">
+                
+            </div>
+            <div class="col-lg-6" style="font-size:20px;font-weight:bolder;color:rgb(255, 255, 255);margin-top:25px;padding-left:250px;"> 
+                <a href="dashboard">Home</a> |
+                <a href="predict">Predict</a> |
+                <a href="login">Logout</a> 
+                
+            </div>
+        </div>
+
+        <div id="body" style="height: 660px; background-image: url('/static/images/predict.jpg'); background-size: cover;">
+            <div class="col-lg-6" style="margin-top:40px;font-weight:bolder;">         
+                <h1 class="text-center" style="font-weight:bolder;color:darkred;">SYSTEM PREDICTION</h1><br><br>
+                <form id="predictionForm">      
+                    <div class="form-group">
+                        <label for="system_perc">System Percentage:</label>
+                        <input type="text" id="system_perc" name="system_perc" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="wait_perc">Wait Percentage:</label>
+                        <input type="text" id="wait_perc" name="wait_perc" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="avg_1_min">Average One Minute:</label>
+                        <input type="text" id="avg_1_min" name="avg_1_min" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="free_mb">Free Megabytes:</label>
+                        <input type="text" id="free_mb" name="free_mb" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="in_bytes_sec">Incoming Bytes Per Second:</label>
+                        <input type="text" id="in_bytes_sec" name="in_bytes_sec" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="out_packets_sec">Outgoing Packets Per Second:</label>
+                        <input type="text" id="out_packets_sec" name="out_packets_sec" class="form-control">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="predict()">Predict</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                
+            </div>
+        <!-- </form> -->
+            <div class="col-lg-6" style="color:rgb(6, 6, 6); text-align:center;font-weight:bolder; padding-top: 10%;">
+                <h1 class="text-center" style="font-weight:bolder;color:darkred;">PREDICTION RESULT</h1><br>
+                <div id="predictionResult"></div>
+            </div>
+        </form>
+        </div>
+
+        <div id="footer" style="background-color:#000000;height:50px;text-align: center;color: white;font-weight:bolder;font-size:15px;padding-top:1%;" >
+            All Rights Reserved To System Prediction
+        </div>
+   
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        function predict() {
+            // Validate form fields before submitting
+            if (!validateForm()) {
+                return;
+            }
+
+            var form = document.getElementById('predictionForm');
+            var formData = new FormData(form);
+
+            fetch('/predictdata', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultDiv = document.getElementById('predictionResult');
+                resultDiv.innerHTML = `
+                    <p><b><h1> ${data.prediction}</h1></b></p>
+                   
+                `;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function validateForm() {
+            var fields = ['system_perc', 'wait_perc', 'avg_1_min', 'free_mb', 'in_bytes_sec', 'out_packets_sec'];
+            for (var i = 0; i < fields.length; i++) {
+                var input = document.getElementById(fields[i]);
+                if (!input.value.trim()) {
+                    alert('Please enter ' + input.getAttribute('name'));
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
